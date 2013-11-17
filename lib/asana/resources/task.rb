@@ -37,6 +37,20 @@ module Asana
       self
     end
 
+    def insert_before(project_id, task_id)
+      path = "#{self.id}/addProject"
+      resource = Resource.new({:project => project_id, :insert_before => task_id})
+      Task.post(path, nil, resource.to_json)
+      self
+    end
+
+    def insert_after(project_id, task_id)
+      path = "#{self.id}/addProject"
+      resource = Resource.new({:project => project_id, :insert_after => task_id})
+      Task.post(path, nil, resource.to_json)
+      self
+    end
+
     def add_tag(tag_id)
       path = "#{self.id}/addTag"
       resource = Resource.new({:tag => tag_id})
