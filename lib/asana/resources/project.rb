@@ -14,8 +14,8 @@ module Asana
       all(*args)
     end
 
-    def tasks
-      Task.all_by_project(:params => { :project_id => self.id })
+    def tasks(*args)
+      Task.all_by_project(:params => { :project_id => self.id }.merge(args.first))
     end
 
     def modify(modified_fields)
